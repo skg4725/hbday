@@ -54,6 +54,11 @@ class Paper {
     })
 
     paper.addEventListener('touchstart', (e) => {
+      var audio = document.getElementById("music");
+      
+      if (audio.paused) {
+        audio.play();
+      } 
       if(this.holdingPaper) return; 
       this.holdingPaper = true;
       
