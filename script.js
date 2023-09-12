@@ -24,7 +24,7 @@ class Paper {
         this.velX = this.mouseX - this.prevMouseX;
         this.velY = this.mouseY - this.prevMouseY;
       }
-        
+       
       const dirX = e.clientX - this.mouseTouchX;
       const dirY = e.clientY - this.mouseTouchY;
       const dirLength = Math.sqrt(dirX*dirX+dirY*dirY);
@@ -51,6 +51,11 @@ class Paper {
     })
 
     paper.addEventListener('mousedown', (e) => {
+      var audio = document.getElementById("music");
+      
+      if (audio.paused) {
+        audio.play();
+      } 
       if(this.holdingPaper) return; 
       this.holdingPaper = true;
       
