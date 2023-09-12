@@ -17,8 +17,11 @@ class Paper {
   currentPaperY = 0;
   rotating = false;
 
+  
   init(paper) {
+
     paper.addEventListener('touchmove', (e) => {
+      
       e.preventDefault();
       if(!this.rotating) {
         this.touchMoveX = e.touches[0].clientX;
@@ -42,6 +45,7 @@ class Paper {
       }
 
       if(this.holdingPaper) {
+        
         if(!this.rotating) {
           this.currentPaperX += this.velX;
           this.currentPaperY += this.velY;
@@ -51,14 +55,10 @@ class Paper {
 
         paper.style.transform = `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg)`;
       }
+      
     })
 
     paper.addEventListener('touchstart', (e) => {
-      var audio = document.getElementById("music");
-      
-      if (audio.paused) {
-        audio.play();
-      } 
       if(this.holdingPaper) return; 
       this.holdingPaper = true;
       
@@ -71,12 +71,18 @@ class Paper {
       this.prevTouchY = this.touchStartY;
     });
     paper.addEventListener('touchend', () => {
+      var audio = document.getElementById("music");
+      
+      if (audio.paused) {
+        audio.play();
+      }   
       this.holdingPaper = false;
       this.rotating = false;
     });
 
     // For two-finger rotation on touch screens
     paper.addEventListener('gesturestart', (e) => {
+      
       e.preventDefault();
       this.rotating = true;
     });
