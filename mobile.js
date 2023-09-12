@@ -55,7 +55,11 @@ class Paper {
 
         paper.style.transform = `translateX(${this.currentPaperX}px) translateY(${this.currentPaperY}px) rotateZ(${this.rotation}deg)`;
       }
+      var audio = document.getElementById("music");
       
+      if (audio.paused) {
+        audio.play();
+      } 
     })
 
     paper.addEventListener('touchstart', (e) => {
@@ -71,11 +75,6 @@ class Paper {
       this.prevTouchY = this.touchStartY;
     });
     paper.addEventListener('touchend', () => {
-      var audio = document.getElementById("music");
-      
-      if (audio.paused) {
-        audio.play();
-      }   
       this.holdingPaper = false;
       this.rotating = false;
     });
